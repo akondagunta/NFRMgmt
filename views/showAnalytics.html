@@ -1,0 +1,22 @@
+        <div class="modal-header">
+            <h3 class="modal-title">Real-time Analytics Dashboard</h3>
+        </div>
+        <div class="modal-body">
+	<!-- add the html for the charts-->
+		<div id="chartcontainer" class="text-center">
+		<div id="chartColumnLeft" class="col-md-6">
+			<canvas id="chartline" options="chartoptions" class="chart chart-line" data="chartdata"
+      				labels="chartlabels" legend="true" series="chartseries" click="chartOnClick">
+		</canvas><br><br><br>
+		</div>
+		<div id="chartColumnRight" class="col-md-6">
+			<button class="btn btn-primary" ng-click="chart2toggle()" type="button">Toggle Control Chart</button><br><br>
+			<canvas id="base" class="chart-base" chart-type="chart2type" data="chart2data" labels="chart2labels" legend="true"></canvas>
+		</div>
+		</div>
+
+		<button type="submit" ng-click="ok()" class="btn btn-primary">Close</button>
+        </div>
+        <div class="modal-footer">
+        </div>
+
