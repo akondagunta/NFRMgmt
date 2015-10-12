@@ -1,6 +1,8 @@
-angular.module('ConMonApp').controller('NewNFRFormCtrl', function ($scope, $http, $modalInstance, systems, controls, controlCategorys, assessmentTypes, fiscalYearOptions) {  
+angular.module('ConMonApp').controller('NewNFRFormCtrl', function ($scope, $http, $modalInstance, systems, systemTypes, controls, controlCategorys, assessmentTypes, fiscalYearOptions, statusTypes) {  
 
   $scope.systems = systems;
+  $scope.systemTypes = systemTypes;
+  $scope.statusTypes = statusTypes;
   $scope.controls = controls;
   $scope.controlcategorys = controlCategorys;
   $scope.assessmenttypes = assessmentTypes;
@@ -51,7 +53,7 @@ angular.module('ConMonApp').controller('NewNFRFormCtrl', function ($scope, $http
     $http({
 	method: 'POST',
 	url: "https://iconline.coe.ic.gov/sites/DIA-CIO3/C/1/SP_SQL_Team" + "/_vti_bin/listdata.svc/ITNFRManagementTest",
-	data: {NFRNumber: $scope.newItem.NFRNumber, NFRTitle: $scope.newItem.NFRTitle, FiscalYearValue: $scope.newItem.FiscalYearValue, System: $scope.newItem.System, Control: $scope.newItem.Control, ControlCategoryValue: $scope.newItem.ControlCategory, AssessmentTypeValue: $scope.newItem.AssessmentType, AssessmentDate: $scope.newItem.AssessmentDate, NFRCondition: $scope.newItem.NFRCondition, NFRCriteria: $scope.newItem.NFRCriteria, NFRCause: $scope.newItem.NFRCause, NFREffect: $scope.newItem.NFREffect, NFRRecommendation: $scope.newItem.NFRRecommendation},
+	data: {NFRNumber: $scope.newItem.NFRNumber, NFRTitle: $scope.newItem.NFRTitle, FiscalYearValue: $scope.newItem.FiscalYearValue, System: $scope.newItem.System, Control: $scope.newItem.Control, ControlCategoryValue: $scope.newItem.ControlCategory, AssessmentTypeValue: $scope.newItem.AssessmentType, AssessmentDate: $scope.newItem.AssessmentDate, NFRCondition: $scope.newItem.NFRCondition, NFRCriteria: $scope.newItem.NFRCriteria, NFRCause: $scope.newItem.NFRCause, NFREffect: $scope.newItem.NFREffect, NFRRecommendation: $scope.newItem.NFRRecommendation, NFROwner: $scope.newItem.NFROwner, SystemOwnerValue: $scope.newItem.SystemOwnerValue, NFROPR: $scope.newItem.NFROPR, NFRStatusValue: $scope.newItem.NFRStatusValue},
 	headers: {"Accept": "application/json;odata=verbose", 
 		  "X-RequestDigest": $scope.FormDigestValue
 		}

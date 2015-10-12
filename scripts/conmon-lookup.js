@@ -1,4 +1,4 @@
-var app = angular.module('ConMonApp', ['chart.js', 'ui.bootstrap']);
+var app = angular.module('ConMonApp', ['chart.js', 'ui.bootstrap','smart-table']);
 
 app.controller('ConMonAppCtrl', function ($scope, $modal, $log, $http, $filter) {
 
@@ -39,11 +39,15 @@ app.controller('ConMonAppCtrl', function ($scope, $modal, $log, $http, $filter) 
 
 	$scope.focusAreas = ["Business Process", "Information System", "Both"];
 
-	$scope.systems = ['SharePoint 2010','SharePoint 2013','Chrome', 'Windows Server 2012','CMS','EDW','FACTS'];
+	$scope.systems = ['iRMIS', 'Web-Based Translator', 'iRMIS DRTS', 'iRMIS-FL CivPay', 'iRMIS-FL Spend Plan', 'CMS', 'EDW', 'eZHR', 'DJSIG', 'HSC', 'NE SCI Corp Lan', 'NIPRNet', 'Security Management', 'SIPRNET', 'DACAFM', 'DLWS', 'S-PBUSE', 'ILS', 'ILS and PASS', 'PASS', 'Physical Security'];
 
-	$scope.controls = ['Access Controls', 'Configuration Management', 'Contingency Planning', 'Interface Controls',  'Security Management', 'Test Control', 'Test Control 2', 'Vulnerability Management'];
+	$scope.controls = ['Security Management', 'Access Controls', 'Configuration Management', 'Segregation of Duties', 'Contingency Planning', 'Business Process Controls', 'Interfaces', 'Data management Systems'];
 
 	$scope.controlCategorys = ['AS','AD','IT', 'FIN'];
+
+	$scope.systemTypes = ["DIA", "Non-DIA"];
+
+	$scope.statusTypes = ["Open", "Closed", "Hold"];
 
 	$scope.assessmentTypes = ['Financial Statement Audit','Internal FISCAM Assessment','FISMA'];
 
@@ -115,6 +119,12 @@ app.controller('ConMonAppCtrl', function ($scope, $modal, $log, $http, $filter) 
         		},
 			assessmentTypes: function () {
           			return $scope.assessmentTypes;
+        		},
+			systemTypes: function () {
+          			return $scope.systemTypes;
+        		},
+			statusTypes: function () {
+          			return $scope.statusTypes;
         		}
       		}
 
@@ -154,6 +164,12 @@ app.controller('ConMonAppCtrl', function ($scope, $modal, $log, $http, $filter) 
         		},
 			assessmentTypes: function () {
           			return $scope.assessmentTypes;
+        		},
+			systemTypes: function () {
+          			return $scope.systemTypes;
+        		},
+			statusTypes: function () {
+          			return $scope.statusTypes;
         		}
       		}
 
@@ -165,6 +181,47 @@ app.controller('ConMonAppCtrl', function ($scope, $modal, $log, $http, $filter) 
 		// $scope.alerts.push({ type: 'success', msg: 'Success! NFR updated with NFR Number: '+item.NFRNumber  });
 		}, function () {
 		$log.info('Update NFR Modal dismissed at: ' + new Date());
+	});
+  };
+
+  $scope.viewNFR = function(item) {
+	var modalInstance = $modal.open({
+		animation: $scope.animationsEnabled,
+		templateUrl: 'views/viewNFRForm.html',
+		controller: 'ViewNFRFormCtrl',
+		size: 'lg',
+		resolve: {
+        		item: function () {
+          			return item;
+        		},
+        		systems: function () {
+          			return $scope.systems;
+        		},
+			controls: function () {
+          			return $scope.controls;
+        		},
+			fiscalYearOptions: function () {
+          			return $scope.fiscalYearOptions;
+        		},
+			controlCategorys: function () {
+          			return $scope.controlCategorys;
+        		},
+			assessmentTypes: function () {
+          			return $scope.assessmentTypes;
+        		},
+			systemTypes: function () {
+          			return $scope.systemTypes;
+        		},
+			statusTypes: function () {
+          			return $scope.statusTypes;
+        		}
+      		}
+
+	});
+ 
+	modalInstance.result.then(function () {
+		}, function () {
+		$log.info('View NFR Modal dismissed at: ' + new Date());
 	});
   };
 
@@ -231,7 +288,7 @@ app.controller('ConMonAppCtrl', function ($scope, $modal, $log, $http, $filter) 
 
   };
 
-  $http({ url: "https://iconline.coe.ic.gov/sites/DIA-CIO3/C/1/SP_SQL_Team" + "/_vti_bin/listdata.svc/ITNFRManagementTest",  
+  $http({ url: "https://3fectasolutions.sharepoint.com" + "/_vti_bin/listdata.svc/NFRItems",  
                 method: "GET",  
             	headers: { "Accept": "application/json;odata=verbose" }  
         }).success(function (data) //got the result successfully  

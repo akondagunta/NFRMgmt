@@ -1,0 +1,89 @@
+
+/* Styles go here */
+ 
+.td{
+  width: 50px;
+}
+ 
+.sortable{
+  cursor: pointer;
+}
+ 
+.item {
+  border: 1px solid;
+  text-align: center;
+  display: inline-block;
+  height: 130px;
+  width: 300px;
+  background: rgba(0,0,0,0.85);
+  line-height: 126px;
+  font-weight: bold;
+  color: #ffffff;
+  font-style: italic;
+  
+}
+ 
+span {
+  display: inline-block;
+  verticle-align: middle;
+}
+.bin {
+  border: 1px solid red;
+  min-height: 150px;
+  width: 323px;
+  float: left;
+  padding: 10px;
+}
+.bin-left {
+  float: left;
+}
+.over {
+  background: #000033 ;
+}
+.drag {
+  opacity: 0.5;
+}
+ 
+.selected {
+  background-color: yellow;
+  
+}
+ 
+.iconsave {
+  
+  background-color: #0099FF;
+  color: #ffffff;
+  border-color: #FFFFCC;
+}
+ 
+.iconexit {
+  
+  background-color: rgba(0,0,0,0.67)  ;
+  color: #ffffff;
+  border-color: #FFFFCC;
+}
+ 
+textarea {
+   resize: none;
+   word-wrap: break-word;
+   transition: 0.05s;
+  -moz-transition: 0.05s;
+   -webkit-transition: 0.05s;
+  -o-transition: 0.05s;
+  }
+  
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+.btn-prim {
+    background-color: #CC6666 ;
+    color: #ffffff;
+}
+.btn-prim:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background-color: #CC3333;
+    color: #ffffff;
+}
+.btn-prim:active, .btn-primary.active {
+    
+    box-shadow: none;
+}

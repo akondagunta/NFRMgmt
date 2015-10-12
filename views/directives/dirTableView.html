@@ -1,0 +1,55 @@
+<form>
+  
+  <br/>
+  <br/>
+    <table st-table="displayResults" st-safe-src="setdata" class="table table-striped">
+      <thead>
+        <tr class="sortable">
+          <th st-sort="{{headings}}" ng-repeat="headings in setcolumns" >{{headings}}</th>
+        </tr>
+        <tr>
+          <th colspan="7"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  ng-repeat="data in displayResults track by $index " ng-click="edit($event,this)" class="sortable">
+          
+           <td ng-repeat="cell in data track by $index " width="200px">
+              
+              <span ng-hide="gridData.rowId == $parent.$index && gridData.colId == $index">
+                {{cell}}
+                 
+              </span>  
+              
+              <div ng-if="gridData.rowId == $parent.$index && gridData.colId == $index">
+                 
+                 
+             <spam>
+               <textarea auto-grow data-ng-model="cell">{{cell}}</textarea>
+                <button class="iconsave" ng-click="update(data,cell,$index)"><!-- <i class="id="" fa fa-floppy-o fa-1"> -->Save</i></button>
+                <button class="iconexit" ng-click="exit()"><!-- <i class="id="" fa fa-level-up fa-1"></i>-->Cancel</button>
+             </spam>
+                 
+                 <!-- <input type="text"  ng-model="cell"> -->
+                
+                  
+               
+                 
+              </div>
+              
+              
+           </td>
+        
+           <td><button class="btn btn-xs btn-danger" ng-click="delete($index)">Delete</button></td>
+          
+        </tr>
+      </tbody>
+                <tfoot>
+                <tr>
+                                <td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+                                </td>
+                </tr>
+                </tfoot>
+    </table>
+    
+</form>

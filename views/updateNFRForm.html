@@ -1,4 +1,5 @@
         <div class="modal-header">
+	    <button class="close" id="closeModalBtn" aria-label="Close" type="button" ng-click="cancel()"><span aria-hidden="true">x</span></button>
             <h3 class="modal-title">Update NFR:</h3>
         </div>
         <div class="modal-body">
@@ -31,25 +32,9 @@
 			</td>
 			</div></tr>
 			<tr><div class="input-group">
-			<td><label>Enter Control:</label></td>
-			<td>				
-				<select class="form-control" ng-model="newItem.Control" placeholder="Choose Control..." ng-options="f for f in controls" ng-required="true"><option></option></select>
-			</td>
-			</div></tr>
-			<tr><div class="input-group">
 			<td><label>Enter Control Category:</label></td>
 			<td>				
-				<select class="form-control" ng-model="newItem.ControlCategoryValue" placeholder="Choose Control Category..." ng-options="f for f in controlcategorys" ng-required="true"><option></option></select>
-			</td>
-			</div></tr>
-			<tr><div class="input-group">
-			<td><label>Enter Fiscal Assessment Date:</label></td>
-			<!-- <td><input type="text" class="form-control" ng-model="newItem.FirstAssessmentDate" datepicker-popup="dd.MM.yyyy" placeholder="Enter First Assessment Date..." /></td> -->
-			<td>
-				<datepicker ng-model="newItem.FirstAssessmentDate" class="well well-sm" show-weeks="false" ></datepicker>
-				<p class="input-group">
-				<pre>Selected date is: <em>{{newItem.FirstAssessmentDate | date:'fullDate' }}</em></pre>
-            			</p>
+				<select class="form-control" ng-model="newItem.Control" placeholder="Choose Control Category..." ng-options="f for f in controls" ng-required="true"><option></option></select>
 			</td>
 			</div></tr>
 			<div class="input-group"><tr>
@@ -72,6 +57,41 @@
 			<td><label>Enter NFR Recommendation:</label></td>
 			<td><input type="text" class="form-control" tooltip="Enter the NFR Recommendation Info..." ng-model="newItem.NFRRecommendation" placeholder="Enter NFR Recommendation..." /></td>
 			</tr></div>
+
+			<!-- ADDED additional 4 fields for NFRs (phase 1) BEGIN-->
+			<div class="input-group"><tr>
+			<td><label>Enter NFR Owner:</label></td>
+			<td><input type="text" class="form-control" ng-model="newItem.NFROwner" placeholder="Enter NFR Owner Info..." /></td>
+			</tr></div>
+			<div class="input-group"><tr>
+			<td><label>Enter System Owner:</label></td>
+			<td>				
+				<select class="form-control" ng-model="newItem.SystemOwnerValue" placeholder="Choose System Owner..." ng-options="f for f in systemTypes" ng-required="true"><option></option></select>
+			</td>
+			</tr></div>
+			<div class="input-group"><tr>
+			<td><label>Enter NFR OPR:</label></td>
+			<td><input type="text" class="form-control" ng-model="newItem.NFROPR" placeholder="Enter NFR OPR Info..." /></td>
+			</tr></div>
+			<div class="input-group"><tr>
+			<td><label>Select NFR Status:</label></td>
+			<td>				
+				<select class="form-control" ng-model="newItem.NFRStatusValue" placeholder="Choose NFR Status..." ng-options="f for f in statusTypes" ng-required="true"><option></option></select>
+			</td>
+			</tr></div>
+			<!-- ADDED additional 4 fields for NFRs (phase 1) END-->
+
+			<div class="input-group"><tr>
+			<td><label>Enter NFR Issue Date:</label></td>
+			<!-- <td><input type="text" class="form-control" ng-model="newItem.FirstAssessmentDate" datepicker-popup="dd.MM.yyyy" placeholder="Enter First Assessment Date..." /></td> -->
+			<td>
+				<datepicker ng-model="newItem.FirstAssessmentDate" class="well well-sm" show-weeks="false" ></datepicker>
+				<p class="input-group">
+				<pre>Selected date is: <em>{{newItem.FirstAssessmentDate | date:'fullDate' }}</em></pre>
+            			</p>
+			</td>
+			</tr></div>
+
 			</table>
 			<button type="submit" class="btn btn-primary">Update Item</button>
 			<button type="button" ng-click="cancel()" class="btn btn-warning">Cancel</button>

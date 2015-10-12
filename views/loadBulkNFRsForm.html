@@ -1,16 +1,65 @@
         <div class="modal-header">
-            <h3 class="modal-title">Load bulk NFRs into the Audit Trackr:</h3>
+	    <button class="close" id="closeModalBtn" aria-label="Close" type="button" ng-click="cancel()"><span aria-hidden="true">x</span></button>
+            <h3 class="modal-title">Bulk NFR import into iCRM:</h3>
         </div>
         <div class="modal-body">
 		<form name="ConMonAddBulkItemsForm" ng-submit="ok()">
-			<table class="table">
-			<div class="input-group"><tr>
-			<td><label>Upload File:</label></td>
+			<!-- <table class="table">
+			<div class="input-group">
+			<tr><td><label>Upload File:</label></td>
 			<td><input type="text" class="form-control" tooltip="Enter the path to the excel spreadsheet containing audit data" ng-model="File" placeholder="NFR data excel spreadsheet path..." ng-required="!File.length" /></td>
-			</tr></div>
+			</tr> 
+			</div>
 			</table>
 			<button type="submit" class="btn btn-primary">Load NFRs</button>
-			<button type="button" ng-click="cancel()" class="btn btn-warning">Cancel</button>			
+			<button type="button" ng-click="cancel()" class="btn btn-warning">Cancel</button> --> 
+
+
+<!-- Start excel upload feature here...... -->
+
+             
+
+  <div>
+      <label>
+        <em>Import NFRs from spreadsheet by dropping them to the box below:</em>
+      </label>
+    </div>
+    <br />
+    <div class="container">
+      
+        
+          <div drop="dropFile(excel)" file-drop="" bin-left="" class="bin">
+            <div draggable="" id="item1" class="item">
+              <div ng-show="files.name">
+                <span>{{files.name}}</span>
+              </div>
+              <div ng-show="!files.name">
+                <span>Drop XLSX Files Here</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="span7">
+    </div>
+    <br/>
+    <div class="container">
+                <span> ...Or browse to file </span>
+          <span>          <choose-file-button>
+            <div class="col-sm-6 col-lg-3">
+              <button class="btn btn-sm btn-prim">
+                Browse
+              </button>
+            </div>
+            <input type="file" file-input="file" passin="dropFile(excel)" required="true" accept=".xlsx" name="excel_file" /> {{file.name}}
+          </choose-file-button></span>
+    </div>
+
+
+    <div ng-show="showTable.showing">
+      <set-cell setdata="results" setcolumns="col"></set-cell>
+    </div>
+
+		
 		</form>
         </div>
         <div class="modal-footer">

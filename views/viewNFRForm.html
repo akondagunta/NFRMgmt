@@ -1,18 +1,12 @@
         <div class="modal-header">
 	    <button class="close" id="closeModalBtn" aria-label="Close" type="button" ng-click="cancel()"><span aria-hidden="true">x</span></button>
-            <h3 class="modal-title">Add a new NFR:</h3>
+            <h3 class="modal-title">View NFR Details:</h3>
         </div>
         <div class="modal-body">
-		<form name="ConMonAddNewItemForm" ng-submit="ok()">
+		<form name="ConMonViewNewItemForm">
 			<table class="table">
-			<div class="input-group">
-			<tr><div class="input-group">
-			<td><label>Enter Assessment Type:</label></td>
-			<td>				
-				<select class="form-control" ng-model="newItem.AssessmentType" placeholder="Choose Assessment Type..." ng-options="f for f in assessmenttypes" ng-required="true"><option></option></select>
-			</td>
-			</div></tr>
-			<tr><td><label>Enter NFR #:</label></td>
+			<div class="input-group"><tr>
+			<td><label>Enter NFR #:</label></td>
 			<td><input type="text" class="form-control" tooltip="Enter the NFR number in the following format: YYYY-System-Number. Example: 2015-IT-0010" ng-model="newItem.NFRNumber" ng-minlength="2" ng-maxlength="15" placeholder="Enter NFR Number..." ng-required="!newItem.System.length" /></td>
 			</tr></div>
 			<div class="input-group"><tr>
@@ -32,7 +26,13 @@
 			</td>
 			</div></tr>
 			<tr><div class="input-group">
-			<td><label>Enter Control:</label></td>
+			<td><label>Enter Assessment Type:</label></td>
+			<td>				
+				<select class="form-control" ng-model="newItem.AssessmentTypeValue" placeholder="Choose Assessment Type..." ng-options="f for f in assessmenttypes" ng-required="true"><option></option></select>
+			</td>
+			</div></tr>
+			<tr><div class="input-group">
+			<td><label>Enter Control Category:</label></td>
 			<td>				
 				<select class="form-control" ng-model="newItem.Control" placeholder="Choose Control Category..." ng-options="f for f in controls" ng-required="true"><option></option></select>
 			</td>
@@ -83,6 +83,7 @@
 
 			<div class="input-group"><tr>
 			<td><label>Enter NFR Issue Date:</label></td>
+			<!-- <td><input type="text" class="form-control" ng-model="newItem.FirstAssessmentDate" datepicker-popup="dd.MM.yyyy" placeholder="Enter First Assessment Date..." /></td> -->
 			<td>
 				<datepicker ng-model="newItem.FirstAssessmentDate" class="well well-sm" show-weeks="false" ></datepicker>
 				<p class="input-group">
@@ -90,9 +91,9 @@
             			</p>
 			</td>
 			</tr></div>
+
 			</table>
-			<button type="submit" class="btn btn-primary">Add Item</button>
-			<button type="button" ng-click="cancel()" class="btn btn-warning">Cancel</button>			
+			<button type="button" ng-click="cancel()" class="btn btn-warning">Close</button>
 		</form>
         </div>
         <div class="modal-footer">
