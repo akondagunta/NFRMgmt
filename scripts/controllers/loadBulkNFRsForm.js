@@ -1,24 +1,24 @@
-angular.module('ConMonApp').controller('loadBulkNFRsFormCtrl', function ($scope, $http, $modalInstance,XLSXReaderService) {  
+angular.module('ConMonApp').controller('loadBulkNFRsFormCtrl', function ($scope, $http, $modalInstance,XLSXReaderService) {
 
   $scope.ok = function () {
     $modalInstance.close();
   };
- 
+
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
 
  $scope.showTable = {
       showing: false
-    }
+    };
     $scope.showPreview = true;
     $scope.files = null;
     $scope.dropFile = function(file) {
-     
+
       $scope.files = file;
-    
-      return showPreviewChanged()
-    }
+
+      return showPreviewChanged();
+    };
     $scope.editRow = function(row) {
       $scope.rowSelected = {};
       for (var prop in row) {
@@ -28,10 +28,10 @@ angular.module('ConMonApp').controller('loadBulkNFRsFormCtrl', function ($scope,
       console.log("prop ", $scope.rowSelected);
       console.log("Row!!1 ", row.Name);
         //$scope.Row = {Name: row[0]};
-    }
- 
+    };
+
     function showPreviewChanged(file) {
- 
+
       $scope.showTable.showing = true;
       console.log("scope files", $scope.files);
         //When I drop the excel file I set a variable
@@ -40,31 +40,31 @@ angular.module('ConMonApp').controller('loadBulkNFRsFormCtrl', function ($scope,
       console.log(excelFile);
       XLSXReaderService.readFile(excelFile, $scope.showPreview)
         .then(function(xlsxData) {
- 
-        
+
+
           var data = xlsxData.sheets.Sheet1.data;
- 
-          var results = excelConvert(data);
- 
- 
+
+
+
+
           function excelConvert(data) {
             return data.slice(1).map(function(xs) {
               return xs.reduce(function(acc, x, i) {
-                acc[data[0][i]] = x
-                return acc
-              }, {})
-            })
+                acc[data[0][i]] = x;
+                return acc;
+              }, {});
+            });
           }
- 
+          var results = excelConvert(data);
           var objColumn = data.shift();
- 
+
           $scope.col = objColumn;
- 
+
           $scope.results = results;
           $scope.displayResults = [].concat($scope.results);
-        })
- 
- 
+        });
+
+
     }
 
 
